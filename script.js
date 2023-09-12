@@ -63,7 +63,7 @@ console.log("new deploy");
     // } else {
     //   $(timeBlock).addClass('present');
     // }
-if (schedules.length) {
+if (schedules) {
 // update schedule when you refresh
 schedules.forEach(function (schedule) {
   // check if schedule matches the timeblock
