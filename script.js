@@ -46,14 +46,14 @@ $(function () {
     const currentHour = dayjs().hour();
    
     if (scheduleHour > currentHour) {
-      timeBlock.classList.add('future') 
+      timeBlock.classList.add('future')
     } else if (scheduleHour < currentHour) {
-      timeBlock.classList.add('past') 
+      timeBlock.classList.add('past')
     } else {
       timeBlock.classList.add('present')
     }
 
-  
+  // update schedule
     schedules.forEach(function (schedule) {
       if ( timeBlock.getAttribute("data-hour") === schedule.hour) {
         timeBlock.querySelector("textarea").value = schedule.text;
@@ -61,7 +61,7 @@ $(function () {
     });
 
     
-
+// add event listener for button
    timeBlock.addEventListener("click", function (event) {
       if (event.target.matches('button')) {
         console.log("clicked button");
@@ -72,6 +72,7 @@ $(function () {
     });
   });
 
+  // need to check if time block already has an event
 function saveSchedule(event) {
   const hour = event.target.parentElement.getAttribute("data-hour");
   const text = event.target.parentElement.querySelector("textarea").value;
@@ -84,8 +85,15 @@ function saveSchedule(event) {
 
   if (localStorage.getItem('schedules')) {
 
+
+    // parse will take JSON string into javascript object/array
     const schedules = JSON.parse(localStorage.getItem('schedules'));
-    
+
+
+    // Check if schedule has exsisting hour event
+    // if it does we remove the event and replace it with a new one
+    // if it does not , push per usual 
+    // check if the hour we are adding is in the schedules array
     const indexRmv = schedules.findIndex(function (schedule) {
       console.log(schedule);
      if (newSchedule.hour === schedule.hour) {
@@ -96,7 +104,9 @@ function saveSchedule(event) {
       schedules.splice(indexRmv, 1);
     }
 
+    // push new schedule into schedules array
     schedules.push(newSchedule);
+    // Add back into local storage
     localStorage.setItem('schedules', JSON.stringify(schedules));
   } else {
     const schedules = [];
@@ -105,10 +115,10 @@ function saveSchedule(event) {
   }
 }
 
-
-// function loadSchedules() {
-//   const schedules = JSON.parse(localStorage.getItem('schedules'));
-// }
+ 
+function loadSchedules() {
+  const schedules = JSON.parse(localStorage.getItem('schedules'));
+}
 
 $('#currentDay').text(currentDay.format('dddd, MMMM D'))
 });
