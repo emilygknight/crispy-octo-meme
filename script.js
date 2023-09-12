@@ -3,6 +3,9 @@
 // in the html.
 var saveButton = $("#save-button");
 var currentDate = $("#currentDay");
+var d = new Date();
+var dateGenerator= (d.getMonth()+1) + "/" + d.getDate();
+console.log(dateGenerator);
 
 
 function sumbitEvent(event) {
@@ -16,10 +19,6 @@ console.log("clicked");
 })
 
 
-
-var d = new Date();
-var dateGenerator= (d.getMonth()+1) + "/" + d.getDate();
-console.log(dateGenerator);
 
 currentDate.append(dateGenerator);
 
