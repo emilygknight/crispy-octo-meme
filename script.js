@@ -100,7 +100,7 @@ function saveSchedule(event) {
       return true;
      }
     });
-    if (indexRmv !== 1) {
+    if (indexRmv !== - 1) {
       schedules.splice(indexRmv, 1);
     }
 
