@@ -21,7 +21,7 @@
 
 $(function () {
   const currentDay = dayjs();
-
+console.log("new deploy");
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -63,14 +63,16 @@ $(function () {
     // } else {
     //   $(timeBlock).addClass('present');
     // }
-
-  // update schedule when you refresh
-    schedules.forEach(function (schedule) {
-      // check if schedule matches the timeblock
-      if ( timeBlock.getAttribute("data-hour") === schedule.hour) {
-        timeBlock.querySelector("textarea").value = schedule.text;
-      }
-    });
+if (schedules.length) {
+// update schedule when you refresh
+schedules.forEach(function (schedule) {
+  // check if schedule matches the timeblock
+  if ( timeBlock.getAttribute("data-hour") === schedule.hour) {
+    timeBlock.querySelector("textarea").value = schedule.text;
+  }
+});
+}
+  
 
     
 // add event listener for button
