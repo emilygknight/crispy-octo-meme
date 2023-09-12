@@ -60,6 +60,8 @@ $(function () {
       }
     });
 
+    
+
    timeBlock.addEventListener("click", function (event) {
       if (event.target.matches('button')) {
         console.log("clicked button");
@@ -107,7 +109,6 @@ function saveSchedule(event) {
 // function loadSchedules() {
 //   const schedules = JSON.parse(localStorage.getItem('schedules'));
 // }
-
 
 $('#currentDay').text(currentDay.format('dddd, MMMM D'))
 });
