@@ -42,19 +42,20 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
   $('.time-block').each(function (index, timeBlock) {
     const schedules = JSON.parse(localStorage.getItem('schedules'));
-    const scheduleHour = value.getAttribute('data-hour');
+    const scheduleHour = timeBlock.getAttribute('data-hour');
     const currentHour = dayjs().hour();
    
     if (scheduleHour > currentHour) {
-      value.classList.add('future') 
+      timeBlock.classList.add('future') 
     } else if (scheduleHour < currentHour) {
-      value.classList.add('past') 
+      timeBlock.classList.add('past') 
     } else {
-      value.classList.add('present')
+      timeBlock.classList.add('present')
     }
 
+  
     schedules.forEach(function (schedule) {
-      if (timeBlock.getAttribute("data-hour") === schedule.hour) {
+      if ( timeBlock.getAttribute("data-hour") === schedule.hour) {
         timeBlock.querySelector("textarea").value = schedule.text;
       }
     });
@@ -80,6 +81,7 @@ function saveSchedule(event) {
   console.log("text", text);
 
   if (localStorage.getItem('schedules')) {
+
     const schedules = JSON.parse(localStorage.getItem('schedules'));
     
     const indexRmv = schedules.findIndex(function (schedule) {
@@ -89,7 +91,7 @@ function saveSchedule(event) {
      }
     });
     if (indexRmv !== 1) {
-    schedules.splice(indexRmv, 1);
+      schedules.splice(indexRmv, 1);
     }
 
     schedules.push(newSchedule);
@@ -102,9 +104,9 @@ function saveSchedule(event) {
 }
 
 
-function loadSchedules() {
-  const schedules = JSON.parse(localStorage.getItem('schedules'));
-}
+// function loadSchedules() {
+//   const schedules = JSON.parse(localStorage.getItem('schedules'));
+// }
 
 
 $('#currentDay').text(currentDay.format('dddd, MMMM D'))
