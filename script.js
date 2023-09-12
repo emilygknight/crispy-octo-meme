@@ -46,15 +46,27 @@ $(function () {
     const currentHour = dayjs().hour();
    
     if (scheduleHour > currentHour) {
-      timeBlock.classList.add('future')
+      timeBlock.classList.add('future');
+
     } else if (scheduleHour < currentHour) {
-      timeBlock.classList.add('past')
+      timeBlock.classList.add('past');
+
     } else {
-      timeBlock.classList.add('present')
+      timeBlock.classList.add('present');
+
     }
 
-  // update schedule
+    // if (scheduleHour > currentHour) {
+    //   $(timeBlock).addClass('future');
+    // } else if (scheduleHour < currentHour) {
+    //   $(timeBlock).addClass('past');
+    // } else {
+    //   $(timeBlock).addClass('present');
+    // }
+
+  // update schedule when you refresh
     schedules.forEach(function (schedule) {
+      // check if schedule matches the timeblock
       if ( timeBlock.getAttribute("data-hour") === schedule.hour) {
         timeBlock.querySelector("textarea").value = schedule.text;
       }
@@ -116,9 +128,9 @@ function saveSchedule(event) {
 }
 
  
-function loadSchedules() {
-  const schedules = JSON.parse(localStorage.getItem('schedules'));
-}
+// function loadSchedules() {
+//   const schedules = JSON.parse(localStorage.getItem('schedules'));
+// }
 
 $('#currentDay').text(currentDay.format('dddd, MMMM D'))
 });
